@@ -1,0 +1,46 @@
+body{
+    background-color: lightgrey;
+    /* text-align: center;  */
+    /* margin-left: auto; */
+    /* margin-right:auto;  */
+    /* background-image: url("../images/stock_market.jpg"); */
+} 
+
+#headline-form{
+    background-color: lightgrey;
+}
+
+label{
+    font-size: 150%;
+    color:#002699;
+}
+
+.button{
+    background-color: #002699;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+#dashboard-title {
+    background-size: 500px 200px;
+    background-color: #3385ff;
+    position:sticky;
+    color: white;
+    background-image: url("../images/stock_market2.jpg");
+}
+
+.panel {
+    background-color: rgb(217, 215, 240); 
+}
+
+/* form{
+
+    display: inline-block;
+
+} */

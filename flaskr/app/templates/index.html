@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Stock Trade Predictor</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel = "stylesheet" href = "../static/css/style.css">
+</head>
+
+<body>
+
+  <div class="jumbotron jumbotron-fluid text-center" id="dashboard-title">
+    <div class="container">
+      <h1>Stock Trade Predictor</h1>
+    </div>
+  </div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <div class="col-md-6" id="headline-form">
+    <form>
+      <div class="form-group" id="hedline-entry">
+        <label for="exampleInputEmail1">Enter the news Headline:</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter headlines">
+      </div>
+      <button class="button" type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <div class="col-md-5">
+      <div id="stock-price-chart"></div>
+    </div>
+  </div>
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+<!-- <script src="https://cdn.plot.ly/plotly-latest.min.js"></script> -->
+<script src="static/js/logic.js"></script>
+  
+</body>
+
+</html>
