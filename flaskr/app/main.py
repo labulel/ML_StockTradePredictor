@@ -2,16 +2,13 @@
 # import numpy as np
 # import tensorflow as tf
 
-
+import pyspark
 
 # pip install pyspark
-# from pyspark.sql import SparkSession
-# spark = SparkSession \
-#     .builder \
-#     .getOrCreate()
-
-    
-# import pyspark
+from pyspark.sql import SparkSession
+spark = SparkSession \
+     .builder \ 
+     .getOrCreate()
 
 # Import dependencies
 from flask import Flask, render_template, jsonify, request
@@ -20,13 +17,13 @@ from pyspark.ml.feature import Tokenizer, StopWordsRemover, HashingTF, IDF, Stri
 from pyspark.ml.feature import VectorAssembler
 from pyspark.ml.linalg import Vector
 from pyspark.ml import Pipeline
-
+from pyspark.sql.functions import length
 from pyspark import SparkContext
+from pyspark.ml.classification import NaiveBayes
 sc = SparkContext("local")
 
 # Create an instance of our Flask app.
 app = Flask(__name__)
-
 
 # Create all the features to the data set
 pos_neg_to_num = StringIndexer(inputCol='action',outputCol='label')
@@ -51,15 +48,27 @@ def index():
         headline = request.form.get('headline')
 
         #Use headline to make a pysparkdf
-
+        df = spark.createDataFrame([(headline)], ['text'])
+        
+        # Create a length column to be used as a future feature 
+        df = df.withColumn('length', length(df['text']))
+        df.show()
+        
         # Fit and transform the pipeline
         cleaner = data_prep_pipeline.fit(df)
         cleaned = cleaner.transform(df)
 
-        # model.load('Trade_Predictor_model')
-        # prediction = model.predict(cleaned)
+        #load model and make prediction
+        NaiveBayesModel = NaiveBayes()
+        model = NaiveBayesModel.load('Trade_Predictor_Model')
+        prediction = model.transform(cleaned)
 
-        #transform 0, 1, 2 to buy/hold/sell
+
+        #transform 0, 1, 2 to hold/sell/buy
+        
+        
+
+
 
     return render_template('index.html', action = prediction)#, teams=teams)
 
