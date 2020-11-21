@@ -22,19 +22,28 @@
   <br>
   <br>
   <br>
-  <div class="col-md-6" id="headline-form">
-    <form>
-      <div class="form-group" id="hedline-entry">
+ 
+  <div class="input-output">
+    <form method='post'>
+      <div class="form-group" id="headline-entry">
         <label for="exampleInputEmail1">Enter the news Headline:</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter headlines">
+        <input class="form-control" name="headline" aria-describedby="emailHelp" placeholder="Enter headlines">
       </div>
       <button class="button" type="submit" class="btn btn-primary">Submit</button>
     </form>
 
-    <div class="col-md-5">
-      <div id="stock-price-chart"></div>
+    <br>
+    <br>
+    <br>
+
+    <div id="output">
+      {% if action %}
+      <p>{{ action }} </p>
+      {% endif %}
     </div>
+
   </div>
+  
   
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
 <!-- <script src="https://cdn.plot.ly/plotly-latest.min.js"></script> -->
