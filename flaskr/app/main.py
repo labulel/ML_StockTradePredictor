@@ -25,18 +25,9 @@ sc = SparkContext("local")
 # Create an instance of our Flask app.
 app = Flask(__name__)
 
-# Create all the features to the data set
-pos_neg_to_num = StringIndexer(inputCol='action',outputCol='label')
-tokenizer = Tokenizer(inputCol="text", outputCol="token_text")
-stopremove = StopWordsRemover(inputCol='token_text',outputCol='stop_tokens')
-hashingTF = HashingTF(inputCol="stop_tokens", outputCol='hash_token')
-idf = IDF(inputCol='hash_token', outputCol='idf_token')
 
-# Create feature vectors
-clean_up = VectorAssembler(inputCols=['idf_token', 'length'], outputCol='features')
 
-# Create a and run a data processing Pipeline
-data_prep_pipeline = Pipeline(stages=[pos_neg_to_num, tokenizer, stopremove, hashingTF, idf, clean_up])
+
 
 
 # Set route
@@ -53,6 +44,22 @@ def index():
         # Create a length column to be used as a future feature 
         df = df.withColumn('length', length(df['text']))
         df.show()
+
+        # Create all the features to the data set
+        # pos_neg_to_num = StringIndexer(inputCol='action',outputCol='label')
+
+        tokenizer = Tokenizer(inputCol="text", outputCol="token_text")
+        stopremove = StopWordsRemover(inputCol='token_text',outputCol='stop_tokens')
+        hashingTF = HashingTF(inputCol="stop_tokens", outputCol='hash_token')
+        idf = IDF(inputCol='hash_token', outputCol='idf_token')
+
+
+        # Create feature vectors
+        clean_up = VectorAssembler(inputCols=['idf_token', 'length'], outputCol='features')
+
+        # Create a and run a data processing Pipeline
+        data_prep_pipeline = Pipeline(stages=[tokenizer, stopremove, hashingTF, idf, clean_up])
+
         
         # Fit and transform the pipeline
         cleaner = data_prep_pipeline.fit(df)
