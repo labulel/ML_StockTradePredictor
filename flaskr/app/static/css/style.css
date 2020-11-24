@@ -68,11 +68,13 @@ label{
 
 
 p{
-    font-size: 30px;
+    font-size: 20px;
     font-family: sans-serif;
+    text-align: justify;
+    text-justify: inter-word;
 }
 
 .form-control{
     width:500px;
-    height: 100px;
+    height: 80px;
 }
