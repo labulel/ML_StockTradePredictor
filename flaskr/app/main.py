@@ -6,9 +6,7 @@ import pyspark
 
 # pip install pyspark
 from pyspark.sql import SparkSession
-spark = SparkSession \
-     .builder \ 
-     .getOrCreate()
+spark = SparkSession.builder.getOrCreate()
 
 # Import dependencies
 from flask import Flask, render_template, jsonify, request
@@ -19,8 +17,8 @@ from pyspark.ml.linalg import Vector
 from pyspark.ml import Pipeline
 from pyspark.sql.functions import length
 from pyspark import SparkContext
-from pyspark.ml.classification import NaiveBayes
-sc = SparkContext("local")
+from pyspark.ml.classification import NaiveBayes, NaiveBayesModel
+# sc = SparkContext("local")
 
 # Create an instance of our Flask app.
 app = Flask(__name__)
@@ -34,12 +32,12 @@ app = Flask(__name__)
 @app.route('/', methods=['post', 'get'])
 def index():
     # Return the template with the teams list passed in
-    headline=''
+    prediction=''
     if request.method=='POST':
         headline = request.form.get('headline')
 
         #Use headline to make a pysparkdf
-        df = spark.createDataFrame([(headline)], ['text'])
+        df = spark.createDataFrame([(0,headline)], ['ID','text'])
         
         # Create a length column to be used as a future feature 
         df = df.withColumn('length', length(df['text']))
@@ -66,15 +64,19 @@ def index():
         cleaned = cleaner.transform(df)
 
         #load model and make prediction
-        NaiveBayesModel = NaiveBayes()
         model = NaiveBayesModel.load('Trade_Predictor_Model')
-        prediction = model.transform(cleaned)
-
+        prediction = model.transform(cleaned).select('prediction').toPandas()
+        
+        prediction = prediction['prediction'].values[0]
 
         #transform 0, 1, 2 to hold/sell/buy
-        
-        
 
+        if prediction == 0:
+            prediction = 'hold'
+        elif prediction == 1:
+            prediction = 'sell'
+        else:
+            prediction = 'buy'        
 
 
     return render_template('index.html', action = prediction)#, teams=teams)
