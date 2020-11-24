@@ -1,24 +1,28 @@
 body{
     background-color: lightgrey;
-   
 } 
 
-/* form{
+
+form{
     background-color: lightgrey;
     display: inline-block;
     margin-left: auto;
     margin-right:auto;
     text-align: center;
-} */
+}
+
 
 label{
     font-size: 150%;
     color:#002699;
+    text-align: center;
 }
+
 
 #boxed {
     border: 2px black ;
-  }
+}
+
 
 .button{
     background-color: #002699;
@@ -32,6 +36,7 @@ label{
     font-weight: bold;
 }
 
+
 #dashboard-title {
     background-size: 500px 200px;
     background-color: #3385ff;
@@ -40,9 +45,11 @@ label{
     background-image: url("../images/stock_market2.jpg");
 }
 
+
 .panel {
     background-color: rgb(217, 215, 240); 
 }
+
 
 #output{
     width:500px;
@@ -50,13 +57,22 @@ label{
     border:2px solid  #002699;
 }
 
+
 .input-output{
     background-color: lightgrey;
     display: inline-block;
-    /* margin-left: auto;
-    margin-right:auto; */
     text-align: center;
     max-width: 500px;
     margin: auto;
 }
 
+
+p{
+    font-size: 30px;
+    font-family: sans-serif;
+}
+
+.form-control{
+    width:500px;
+    height: 100px;
+}
