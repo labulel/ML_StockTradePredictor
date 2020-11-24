@@ -54,11 +54,11 @@ def index():
 
         #transform 0, 1, 2 to hold/sell/buy
         if prediction == 0:
-            prediction = 'Hold Stocks'
+            prediction = 'Hold'
         elif prediction == 1:
-            prediction = 'Sell Stocks'
+            prediction = 'Sell'
         else:
-            prediction = 'Buy more Stocks'        
+            prediction = 'Buy'        
 
     return render_template('index.html', action = prediction)#, teams=teams)
 
