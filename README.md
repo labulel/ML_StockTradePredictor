@@ -1,5 +1,7 @@
 # Stock Trade Predictor
 
+![img](https://github.com/labulel/ML_StockTradePredictor/blob/main/flaskr/app/static/images/stock_market.jpg)<br>
+
 ## Analysts:
 
 * Kamar Abdur-Rashid
