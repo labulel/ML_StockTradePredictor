@@ -37,6 +37,21 @@ label{
 }
 
 
+.button2{
+    margin: 0 auto;
+    /* display: block; */
+    background-color: #002699;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+
 #dashboard-title {
     background-size: 500px 200px;
     background-color: #3385ff;

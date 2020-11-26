@@ -51,7 +51,8 @@ def index():
         model = NaiveBayesModel.load('Trade_Predictor_Model')
         prediction = model.transform(cleaned).select('prediction').toPandas()
         prediction = prediction['prediction'].values[0]
-
+        print(prediction)
+        
         #transform 0, 1, 2 to hold/sell/buy
         if prediction == 0:
             prediction = 'Hold'
@@ -59,6 +60,8 @@ def index():
             prediction = 'Sell'
         else:
             prediction = 'Buy'        
+
+        print(prediction)
 
     return render_template('index.html', action = prediction)#, teams=teams)
 

@@ -8,6 +8,9 @@
   <title>Stock Trade Predictor</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel = "stylesheet" href = "../static/css/style.css">
+  <script type = "text/javascript">
+    document.getElementById("action").reset();
+  </script>
 </head>
 
 <body>
@@ -36,12 +39,17 @@
             <input type="text" class="form-control" name="headline"  placeholder="Enter headlines" >
         </div>
         <button class="button"  type="submit" class="btn btn-primary">Submit</button>
+
      
         </form>
+
+        
 
         <br>
         <br>
         <br>
+        
+
 
         <div id="output">
           {% if action %}
@@ -50,6 +58,14 @@
           <p id="action">{{ action }} </p>
             {% endif %}
         </div>
+
+        <button class="button2" onclick= 
+        "document.getElementById( 
+        'action').innerHTML = ''"> 
+      Clear Output 
+        </button> 
+
+
 
         </div>
       </div>
